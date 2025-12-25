@@ -1,0 +1,66 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: flashsales-app-service
+  namespace: default
+  uid: f3016573-b7dd-4dc5-b1b3-345286bf2592
+  resourceVersion: '10564'
+  creationTimestamp: '2025-12-25T08:36:27Z'
+  labels:
+    app: flashsales-app
+    version: v1
+  annotations:
+    kubernetes.io/elb.health-check-flag: 'off'
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+  managedFields:
+    - manager: cfe-apiserver
+      operation: Update
+      apiVersion: v1
+      time: '2025-12-25T08:38:48Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubernetes.io/elb.health-check-flag: {}
+            f:kubernetes.io/elb.lb-algorithm: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:version: {}
+        f:spec:
+          f:externalTrafficPolicy: {}
+          f:internalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":80,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+          f:type: {}
+spec:
+  ports:
+    - name: cce-service-0
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31652
+  selector:
+    app: flashsales-app
+    version: v1
+  clusterIP: 10.247.64.29
+  clusterIPs:
+    - 10.247.64.29
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+status:
+  loadBalancer: {}

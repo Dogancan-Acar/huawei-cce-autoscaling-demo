@@ -1,0 +1,75 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: flashsale-ingress
+  namespace: default
+  uid: fd9eb29c-4e90-41d6-b173-e0a2276ac3be
+  resourceVersion: '10600'
+  generation: 1
+  creationTimestamp: '2025-12-25T08:38:48Z'
+  annotations:
+    kubernetes.io/elb.autocreate: '{"name":"elb-flashsale","type":"public","bandwidth_name":"cce-bandwidth-1766651910075","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_bgp","available_zone":["tr-west-1a","tr-west-1b"],"elb_virsubnet_ids":["a6b8e20f-3f9b-4d59-af40-a2e26b76e1c4"],"ipv6_vip_virsubnet_id":"a6b8e20f-3f9b-4d59-af40-a2e26b76e1c4","l7_flavor_name":"L7_flavor.elb.pro.max","l4_flavor_name":"","vip_subnet_cidr_id":"4654c3e4-5f51-4207-bf0b-76ae23a7de92"}'
+    kubernetes.io/elb.class: performance
+    kubernetes.io/elb.eip-id: ac8b9490-35c5-4996-bcd6-444e3ba61897
+    kubernetes.io/elb.id: 5730c9d4-a1f9-4bca-86cf-8828691638b9
+    kubernetes.io/elb.ip: 101.44.34.163
+    kubernetes.io/elb.listener-master-ingress: default/flashsale-ingress
+    kubernetes.io/elb.port: '80'
+  managedFields:
+    - manager: cfe-apiserver
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2025-12-25T08:38:48Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubernetes.io/elb.autocreate: {}
+            f:kubernetes.io/elb.class: {}
+            f:kubernetes.io/elb.port: {}
+        f:spec:
+          f:ingressClassName: {}
+          f:rules: {}
+    - manager: ingress-controller
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2025-12-25T08:38:55Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:kubernetes.io/elb.eip-id: {}
+            f:kubernetes.io/elb.id: {}
+            f:kubernetes.io/elb.ip: {}
+            f:kubernetes.io/elb.listener-master-ingress: {}
+    - manager: ingress-controller
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2025-12-25T08:38:55Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+spec:
+  ingressClassName: cce
+  rules:
+    - host: 2dd.space
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: flashsales-app-service
+                port:
+                  number: 80
+            property:
+              ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+status:
+  loadBalancer:
+    ingress:
+      - ip: 192.168.0.147
+        hostname: 2dd.space
