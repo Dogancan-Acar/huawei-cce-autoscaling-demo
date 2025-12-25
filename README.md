@@ -1,0 +1,1 @@
+# huawei-cce-autoscaling-demo
